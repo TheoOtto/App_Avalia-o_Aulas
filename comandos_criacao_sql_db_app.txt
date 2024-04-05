@@ -1,0 +1,61 @@
+CREATE DATABASE appAvaliacao
+USE appAvaliacao
+
+CREATE TABLE Imagens(
+	id_imagem INT PRIMARY KEY IDENTITY NOT NULL,
+	nome_arqv VARCHAR(255),
+	vb_imagem VARBINARY(MAX)
+)
+
+CREATE TABLE Usuarios (
+	id_usuario INT PRIMARY KEY IDENTITY NOT NULL,
+	account_image INT,
+	senha_hash CHAR(20) NOT NULL,
+	nome_usuario VARCHAR(50)NOT NULL,
+	email_usuario VARCHAR(100) NOT NULL,
+	CONSTRAINT fk_imagem_conta FOREIGN KEY (account_image) REFERENCES Imagens(id_imagem)
+)
+
+CREATE TABLE Materia (
+	id_materia INT PRIMARY KEY IDENTITY NOT NULL,
+	nome_materia VARCHAR(100)
+)
+
+INSERT Materia VALUES
+('Programação de Aplicativos'),
+('Banco de Dados'),
+('Internet das Coisas')
+
+CREATE TABLE Aula (
+	id_aula INT PRIMARY KEY IDENTITY NOT NULL,
+	data_aula DATE NOT NULL,
+	professor_aula VARCHAR(80) NOT NULL,
+	materia_aula INT NOT NULL,
+	descricao_aula VARCHAR(255),
+	CONSTRAINT fk_aula_materia FOREIGN KEY (materia_aula) REFERENCES Materia(id_materia)
+)
+
+INSERT Aula VALUES
+(GETDATE(), 'Gustavo Vinicius', 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper, nulla a comovcs tao lacinia, magna metus dapibus magna, at sollicitudin massa dui commodo magna.'),
+('06/14/2023', 'Harrison Santos', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin beijo nabunda, nulla a varius lacinia, magna metus dapibus magna, at sollicitudin massa dui commodo magna.'),
+('06/12/2023', 'Gustavo Vinicius', 2, 'Revisão para prova de recuperação'),
+('05/17/2023', 'Harrison Santos', 1, 'Lorem ipsum dolor sit amet, consectetur blabla blah. Proin ullamcorper, nulla a varius lacinia, magna metus dapibus magna, at sollicitudin massa dui commodo magna.'),
+('05/02/2023', 'Alexander', 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper, nulla a oie lacinia, magna metus dapibus magna, at sollicitudin massa dui commodo magna.'),
+('05/29/2023', 'André', 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper, nulla a niceprof lacinia, magna metus dapibus magna, at sollicitudin massa dui commodo magna.'),
+('05/24/2023', 'Harrison Santos', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dalheaulao, nulla a varius lacinia, magna metus dapibus magna, at sollicitudin massa dui commodo magna.')
+
+CREATE TABLE Comentario (
+	id_comentario INT PRIMARY KEY IDENTITY NOT NULL,
+	texto_comentario VARCHAR(255),
+	usuario_comentou INT NOT NULL,
+	aula_comentada INT NOT NULL,
+	nota FLOAT,
+	CONSTRAINT fk_usuario_comentario FOREIGN KEY (usuario_comentou) REFERENCES Usuarios(id_usuario),
+	CONSTRAINT fk_aula_comentario FOREIGN KEY (aula_comentada) REFERENCES Aula(id_aula)
+)
+
+SELECT * FROM Usuarios
+SELECT * FROM Imagens
+SELECT * FROM Materia
+SELECT * FROM Aula
+SELECT * FROM Comentario

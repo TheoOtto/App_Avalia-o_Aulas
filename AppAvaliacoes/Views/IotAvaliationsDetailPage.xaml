@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:vm="clr-namespace:AppAvaliacoes.ViewModels"
+			 x:Class="AppAvaliacoes.Views.IotAvaliationsDetailPage"
+			 x:DataType="vm:IotAvaliationsDetailViewModel"
+             BackgroundColor="White">
+    <Grid Margin="15"
+          RowDefinitions="Auto, Auto, Auto, Auto, Auto,Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+          ColumnDefinitions=".5*, *">
+
+        <Label
+            Text="Internet das Coisas"
+            FontSize="32"
+            HorizontalOptions="Start" 
+            FontAttributes="Bold"
+            Grid.ColumnSpan="2"
+            Grid.Row="0"
+            TextColor="Black"/>
+
+        <Label
+            SemanticProperties.HeadingLevel="Level8"
+            FontSize="Default"
+            HorizontalOptions="Start"
+            Grid.ColumnSpan="2"
+            Grid.Row="1"
+            TextColor="Black">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Dia "/>
+                    <Span Text="{Binding Item.Data, StringFormat='{0:dd/MM/yyyy}'}"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label
+            Text="{Binding Item.Professor}"
+            SemanticProperties.HeadingLevel="Level8"
+            FontSize="Default"
+            HorizontalOptions="Start"
+            Grid.ColumnSpan="2"
+            Grid.Row="2"
+            TextColor="Black"/>
+
+        <Label
+            Padding="0,15"
+            Text="{Binding Item.Descricao}"
+            SemanticProperties.HeadingLevel="Level8"
+            FontSize="Default"
+            HorizontalOptions="Start"
+            Grid.ColumnSpan="2"
+            Grid.Row="3"
+            TextColor="Black"/>
+
+        <Line
+            X2="400"
+            Stroke="Gray"
+            Grid.ColumnSpan="2"
+            Grid.Row="4"/>
+
+        <Label
+            Padding="0, 15"
+            Text="*Nome do usuário*"
+            SemanticProperties.HeadingLevel="Level8"
+            FontSize="20"
+            HorizontalOptions="Start"
+            Grid.ColumnSpan="2"
+            Grid.Row="5"
+            TextColor="Black"/>
+
+        <HorizontalStackLayout
+            Margin="0,5"
+            HorizontalOptions="Center"
+            Grid.ColumnSpan="2"
+            Grid.Row="6"
+            Spacing="5">
+            <Image Source="estrela_nao_preenchida.png" HeightRequest="40"
+                   x:Name="EstrelaUm">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NotaEscolhida_Um"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="estrela_nao_preenchida.png" HeightRequest="40"
+                   x:Name="EstrelaDois">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NotaEscolhida_Dois"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="estrela_nao_preenchida.png" HeightRequest="40"
+                   x:Name="EstrelaTres">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NotaEscolhida_Tres"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="estrela_nao_preenchida.png" HeightRequest="40"
+                   x:Name="EstrelaQuatro">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NotaEscolhida_Quatro"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="estrela_nao_preenchida.png" HeightRequest="40"
+                   x:Name="EstrelaCinco">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NotaEscolhida_Cinco"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </HorizontalStackLayout>
+
+        <Border 
+            Margin="0,15,0,0"
+            Stroke="#E1E1E1"
+            StrokeThickness="1"
+            StrokeShape="RoundRectangle 10, 10, 10, 10"
+            Padding="2, 8"
+            HorizontalOptions="Center"
+            Grid.ColumnSpan="2"
+            Grid.Row="7">
+
+            <Entry x:Name="comentarioEntry"
+                   MaxLength="100"/>
+        </Border>
+
+        <HorizontalStackLayout
+            Margin="0,5,15,10"
+            HorizontalOptions="End"
+            Grid.ColumnSpan="2"
+            Grid.Row="8"
+            Spacing="5">
+            <Label
+                TextColor="Black"/>
+            <Label
+                Text="/ 100"
+                SemanticProperties.HeadingLevel="Level8"
+                FontSize="15"
+                TextColor="Black"/>
+        </HorizontalStackLayout>
+
+        <ImageButton Source="icone_enviar_avaliacao.png"
+                     Padding="9"
+                     Margin="0,0,0,15"
+                     Aspect="AspectFit"
+                     BackgroundColor="#03DAC5"
+                     CornerRadius="29"
+                     WidthRequest="75"
+                     HeightRequest="75"
+                     Grid.ColumnSpan="2"
+                     Grid.Row="9">
+            <ImageButton.GestureRecognizers>
+                <TapGestureRecognizer Tapped="EnviarAvaliacao"/>
+            </ImageButton.GestureRecognizers>
+        </ImageButton>
+
+        <Line
+            X2="400"
+            Stroke="Gray"
+            Grid.ColumnSpan="2"
+            Grid.Row="10"/>
+
+        <Label
+            Padding="0, 15"
+            Text="Avaliações e Comentários"
+            FontSize="20"
+            HorizontalOptions="Start"
+            Grid.ColumnSpan="2"
+            Grid.Row="11"
+            TextColor="Black"/>
+
+    </Grid>
+</ContentPage>

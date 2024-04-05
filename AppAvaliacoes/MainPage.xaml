@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:vm="clr-namespace:AppAvaliacoes.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+			 x:Class="AppAvaliacoes.Views.MainPage"
+			 x:DataType="vm:MainViewModel"
+             FlyoutItem.IsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center"
+            >
+
+            <Label
+                Text="Log-in"
+                TextTransform="Uppercase"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" 
+                FontAttributes="Bold"/>
+
+            <Label
+                Text="Email"
+                SemanticProperties.HeadingLevel="Level2"
+                FontSize="20"
+                HorizontalOptions="Center" />
+
+
+            <Border Stroke="#E1E1E1"
+                    BackgroundColor="White"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10, 10, 10, 10"
+                    Padding="2, 8"
+                    HorizontalOptions="Center">
+
+                <Entry x:Name="emailEntry"
+                    Placeholder="your_email@gmail.com"
+                    Keyboard="Email"
+                    IsTextPredictionEnabled="False"
+                    IsSpellCheckEnabled="False">
+                    <Entry.Behaviors>
+                        <toolkit:MultiValidationBehavior
+                            x:Name="emailValidator"
+                            Flags="ValidateOnAttaching,ValidateOnValueChanged">
+                            <toolkit:TextValidationBehavior
+                                Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                                MinimumLength="1"
+                                toolkit:MultiValidationBehavior.Error="Email necessário"
+                                />
+                            <toolkit:EmailValidationBehavior
+                                Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                                toolkit:MultiValidationBehavior.Error="Formato do email inválido."
+                                />
+                        </toolkit:MultiValidationBehavior>
+                    </Entry.Behaviors>
+                </Entry>
+            </Border>
+
+            <Label
+                Text="Senha"
+                SemanticProperties.HeadingLevel="Level2"
+                FontSize="20"
+                HorizontalOptions="Center" />
+
+            <Border Stroke="#E1E1E1"
+                    BackgroundColor="White"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10, 10, 10, 10"
+                    Padding="2, 8"
+                    HorizontalOptions="Center">
+                
+                <Entry x:Name="passwordEntry"
+                    IsPassword="True" />
+            </Border>
+
+
+            <Button
+                x:Name="EntrarBtn"
+                Text="Entrar"
+                Clicked="EntrarBtn_Clicked"
+                TextTransform="Uppercase"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Não possui uma conta?"
+                FontSize="14"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="SignUpBtn"
+                Text="Cadastre-se!"
+                Clicked="SignUpBtn_Clicked"
+                BackgroundColor="Transparent"
+                Padding="0,0,0,0"
+                Margin="0,0,0,0"
+                TextColor="Black"
+                TextTransform="Uppercase"
+                FontSize="16"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
